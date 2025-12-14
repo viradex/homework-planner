@@ -32,6 +32,81 @@
       </div>
     </nav>
 
+    <div
+      class="modal fade"
+      id="addHomework"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Homework</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <form class="row g-3">
+              <!-- Homework Name -->
+              <div class="col-12">
+                <label class="form-label">Homework name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="e.g. Algebra Worksheet"
+                  required
+                />
+              </div>
+
+              <!-- Subject -->
+              <div class="col-md-6">
+                <label class="form-label">Subject</label>
+                <input type="text" class="form-control" placeholder="e.g. Mathematics" />
+              </div>
+
+              <!-- Due Date -->
+              <div class="col-md-6">
+                <label class="form-label">Due date</label>
+                <input type="date" class="form-control" />
+              </div>
+
+              <!-- Estimated Time -->
+              <div class="col-md-6">
+                <label class="form-label">Estimated time (minutes)</label>
+                <input type="number" class="form-control" min="5" step="5" placeholder="30" />
+              </div>
+
+              <!-- Importance (right-aligned) -->
+              <div class="col-md-6 d-flex align-items-center justify-content-start ps-4">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="importantSwitch" />
+                  <label class="form-check-label" for="importantSwitch">Mark as important</label>
+                </div>
+              </div>
+
+              <!-- Notes -->
+              <div class="col-12">
+                <label class="form-label">Notes</label>
+                <textarea
+                  class="form-control"
+                  rows="3"
+                  placeholder="Optional notes or instructions"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Add Homework</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <main class="container-fluid px-4 my-4">
       <!-- Weekly Overview -->
       <section class="card mb-4">
@@ -151,31 +226,91 @@
             <div class="card-header d-flex justify-content-between align-items-center">
               <h5 class="mb-0">Homework</h5>
               <div class="btn-group">
-                <button class="btn btn-sm btn-outline-secondary">
+                <button
+                  class="btn btn-sm btn-outline-secondary addHomeworkBtn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addHomework"
+                >
                   <i class="bi bi-plus-lg"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-secondary">
+                <button class="btn btn-sm btn-outline-secondary filterBtn">
                   <i class="bi bi-filter"></i>
                 </button>
               </div>
             </div>
 
             <div class="card-body">
-              <h6>Monday 4th June</h6>
-              <ul class="list-group list-group-flush mb-3">
-                <li class="list-group-item">
-                  <input class="form-check-input me-2" type="checkbox" checked />
-                  <label class="form-check-label text-decoration-line-through text-secondary"
-                    >Math Homework: Algebra</label
-                  >
+              <h6 class="text-muted mb-1">Monday 4th June</h6>
+
+              <ul class="list-group list-group-flush mb-2">
+                <li class="list-group-item d-flex align-items-start gap-3">
+                  <input class="form-check-input mt-1" type="checkbox" checked />
+
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div>
+                        <strong class="text-decoration-line-through text-secondary">
+                          Algebra Worksheet
+                        </strong>
+                        <div class="small text-secondary">Mathematics</div>
+                      </div>
+
+                      <!-- Important badge -->
+                      <span class="badge bg-danger-subtle text-danger border">Important</span>
+                    </div>
+
+                    <div class="small text-secondary mt-1">Due: Mon 4 Jun • Est: 30 min</div>
+
+                    <button
+                      class="btn btn-sm btn-link p-0 mt-1"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details-math-1"
+                    >
+                      Show details
+                    </button>
+
+                    <div class="collapse mt-2" id="details-math-1">
+                      <div class="small text-secondary">
+                        Complete questions 1-15 from the textbook. Show all working.
+                      </div>
+                    </div>
+                  </div>
                 </li>
               </ul>
 
-              <h6>Tuesday 5th June</h6>
+              <h6 class="text-muted mb-1">Tuesday 5th June</h6>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <input class="form-check-input me-2" type="checkbox" />
-                  <label class="form-check-label">Science Project: Volcano</label>
+                <li class="list-group-item d-flex align-items-start gap-3">
+                  <input class="form-check-input mt-1" type="checkbox" />
+
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div>
+                        <strong>Science Project: Volcano</strong>
+                        <div class="small text-secondary">Science</div>
+                      </div>
+
+                      <!-- Reserved space for Important badge -->
+                      <div class="ms-2"></div>
+                    </div>
+
+                    <div class="small text-secondary mt-1">Due: Tue 5 Jun • Est: 90 min</div>
+
+                    <button
+                      class="btn btn-sm btn-link p-0 mt-1"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details-sci-1"
+                    >
+                      Show details
+                    </button>
+
+                    <div class="collapse mt-2" id="details-sci-1">
+                      <div class="small text-secondary">
+                        Build a model volcano and prepare a short explanation of the eruption
+                        process.
+                      </div>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
